@@ -8,14 +8,11 @@
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 #--------------------------
 
-title: 'Blog | MijazzChan'                          # the main title
+title: 'MijazzChan'                          # the main title
 
-tagline: '='  # it will display as the sub-title
+tagline: 'Watermelon & Java?'  # it will display as the sub-title
 
-description: >-                        # used by seo meta and the atom feed
-  A minimal, portfolio, sidebar,
-  bootstrap Jekyll theme with responsive web design
-  and focuses on text presentation.
+description: 'Blog of MijazzChan, powered by Jekyll & Chirpy'                         # used by seo meta and the atom feed
 
 # Replace with the website url, e.g. 'https://username.github.io'
 url: 'https://MijazzChan.github.io'
@@ -26,9 +23,6 @@ avatar: /assets/img/mijazz/avatar.jpg   # support internet resources
 
 github:
   username: MijazzChan             # change to your github username
-
-twitter:
-  username: twitter_username            # change to your twitter username
 
 social:
   name: MijazzChan                  # it will shows as the copyright owner in Footer
@@ -137,19 +131,7 @@ defaults:
         -
           label: Tags
           url: /tabs/tags/
-  -
-    scope:
-      path: categories
-    values:
-      tab_active: Categories
-      location: Category
-      breadcrumb:
-        -
-          label: Home
-          url: /
-        -
-          label: Categories
-          url: /tabs/categories/
+
   -
     scope:
       path: tabs
