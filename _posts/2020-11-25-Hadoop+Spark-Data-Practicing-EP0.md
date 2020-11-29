@@ -10,13 +10,15 @@ tags: [data, hadoop, spark, java]
 
 ## Before You Read This
 
-该文只是一门课程`数据挖掘`的大作业记录文, 并不是教程式文章. 我会尽量详细的给出参考文与具体步骤.
+该文只是一门课程`数据挖掘`的大作业记录文, 并不是教程式文章. 但我会尽量详细的给出参考文与具体步骤.
 
 ## Why This Topic?
 
-看了很多人写的技术博客和图书馆借来的书, 发现许多都是基于`Pseudo-Distributed Mode`或者`Fully-Distributed Mode`. 这两种模式因为资源问题我也只成功搭建并使用过前者, 当时在`Windows10`上拖着一个`CentOS8`的虚拟机, 因为数据集就快`2GB`大小, 一套下来发现虚拟机吃的内存快接近`7G`.
+看了很多人写的技术博客, 发现许多都是基于`Pseudo-Distributed Mode`或者`Fully-Distributed Mode`. 这两种模式因为资源问题我也只成功搭建并使用过前者, 当时在`Windows10`上拖着一个`CentOS8`的虚拟机, 因为数据集就快`2GB`大小, 一套下来发现虚拟机吃的内存快接近`7G`.
 
 ~~又想试试YARN又不想做多机分布式, 那就做单机YARN~~ 关于YARN:官方的也很简明易懂 [Apache Hadoop YARN](https://hadoop.apache.org/docs/r3.1.4/hadoop-yarn/hadoop-yarn-site/YARN.html)
+
+毕竟数据集只是几G, python直接上pandas套装估计会更方便.
 
 抱着入门一下这个技术栈, 完成一下大作业和想拥抱一下Arch社区的心态, 在使用过`LinuxMint`和`Fedora`的我换到了`Manjaro Linux 20`. 
 
@@ -74,7 +76,7 @@ Linux lenovo 5.8.18-1-MANJARO #1 SMP PREEMPT Sun Nov 1 14:10:04 UTC 2020 x86_64 
 
 ## Prepare Environment
 
-### 解压JDK
+### Extract JDK
 
 ```shell
 mijazz@lenovo  ~/devEnvs  ll -a
@@ -93,7 +95,7 @@ drwx------ 36 mijazz mijazz 4.0K Nov 25 15:28 ..
 drwxr-xr-x  8 mijazz mijazz 4.0K Nov  9 20:23 OpenJDK8
 ```
 
-### 配置PATH
+### Configure $PATH
 
 > 我使用的是`zsh`, 并且不索引`bashrc`. 虽然到时候我会在主shell里启动, 但是不保证他会不会在某些部件里调用bash. 
 >
@@ -115,7 +117,7 @@ echo 'export CLASSPATH=".:${JAVA_HOME}/lib:${JRE_HOME}/lib"' >> ~/.zshrc
 echo 'export PATH="${JAVA_HOME}/bin:$PATH"' >> ~/.zshrc
 ```
 
-### 测试
+### Verify Configuration
 
 ```shell
  mijazz@lenovo  ~  echo $JAVA_HOME

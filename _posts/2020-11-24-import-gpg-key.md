@@ -10,11 +10,7 @@ tags: [notes]
 
 After re-installing the system, I lost all my git setting since I did not back up the `gitconfig` file.
 
-On the previous OS, my personal usages on gpg key-sign are as followed
-
 + I have a 2 gpg keys, one for `Github` and one for my personal `Gitea Server`.
-
-+ I would use the `Github` gpg key more often, so
 
   ```bash
   ## To Find Keys available/active on system
@@ -24,6 +20,7 @@ On the previous OS, my personal usages on gpg key-sign are as followed
   # Project-wise setting 
   git config user.signingkey $MY_OWN_GPGKEY$
   ```
+
 
 ## How to re-import
 
@@ -62,5 +59,5 @@ gpg> trust
 
 ## Sign the commit
 
-Once the key has been imported, simply `git commit -S ...` will make git the sign the commit. You may ask for private key password if your key was generated with it.
+Once the key has been imported, simply `git commit -S ...` will make git sign the commit. You may be asked for private key password if your key was generated with it.
 
