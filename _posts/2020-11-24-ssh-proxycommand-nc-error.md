@@ -24,17 +24,15 @@ Connection closed by UNKNOWN port 65535
 
 When I was configuring ssh proxy tunnel,`ProxyCommand nc ...` , then I try to `ssh -T git@github.com` to validate my proxy configuration. I got those errors described below.
 
-It seems like `nc` doesn't recognized the option `-X` , thus failed to use the proxy.
+It seems like `nc` didn't recognized the option `-X` , thus failed to use the proxy.
 
 I tried to locate nc by using `which nc`, then I got `/usr/bin/nc`.
 
-And `nc` is not recognizing the param `nc -X`. 
-
 ## Locate the problems
 
-So I try to find to trace the version of `nc`, to see whether it is too old or something causing it to be outdated.
+So I try to find to trace the version of `nc`, to see whether its version is too old or something with its dependencies causing it to be outdated.
 
-> This kind of problem is not likely to happen on a rolling base system like manjaro, it always received the latest software/dependencies update.
+> This kind of problem is not likely to happen on a rolling base system like `Manjaro`, since it always receives the latest softwares/dependencies update.
 
 ```shell
 nc --version
@@ -57,11 +55,11 @@ listen for inbound:    nc -l -p port [options] [hostname] [port] ...
 tunnel to somewhere:   nc -L hostname:port -p port [options]
 ```
 
-This is what i get when exec `nc --version` & `nc --help`
+This is what i got when exec `nc --version` & `nc --help`
 
 Then i try using `pamac search` to see whether the `/usr/bin/nc` in my path/system have some kind of dependency problems.
 
-I get
+I got
 
 ```shell
 pamac search netcat 
@@ -76,7 +74,7 @@ Turns out that there are two different versions of `nc`, one is under `openbsd`,
 
 ## Solution
 
-Try to install the right version of `nc`
+attempt installing the right version of `nc`
 
 > It may prompt "To remove conflict", just type `y`, let `pacman` handle for you.
 
