@@ -470,3 +470,109 @@ only showing top 20 rows
 #### Crime Summary(Spark SQL)
 
 > `DataFrame`内操作也行, 抱着入门框架的心态, 硬上`Spark SQL`吧
+
+只看总的犯罪统计, 抓个靠前的十宗罪吧
+
+> 这里留了点代码, 到时候往Hive里面写或者往MariaDB里面写, 换到pyspark画图方便些.
+
+`focusCrime.scala` - 2
+
+> 注意的是: 要使用`spark sql`, `dataframe`或者`rdd`里面的东西要做成一个`View`, 就可以当成一个表做结构化查询了. 
+
+```scala
+  data.createOrReplaceTempView("t_CrimeDate")
+
+  val eachCrimeSummary = spark.
+    sql("select Crime, count(1) Occurs " +
+      "from t_CrimeDate " +
+      "group by Crime")
+  // For Writing in CSV or Hive DB in further PySpark Usage
+//  eachCrimeSummary.write.option("header", true).csv("")
+  eachCrimeSummary.orderBy(desc("Occurs")).show(10)
+```
+
+```scala
++-------------------+-------+
+|              Crime| Occurs|
++-------------------+-------+
+|              THEFT|1522618|  # 偷窃
+|            BATTERY|1321333|  # 殴打
+|    CRIMINAL DAMAGE| 821509|  # 破坏(刑事)
+|          NARCOTICS| 733993|  # 毒品犯罪
+|            ASSAULT| 456288|  # 攻击
+|      OTHER OFFENSE| 447617|  # 其他侵犯
+|           BURGLARY| 406317|  # 非法入侵
+|MOTOR VEHICLE THEFT| 331980|  # 盗窃车辆
+| DECEPTIVE PRACTICE| 297519|  # 诈骗
+|            ROBBERY| 270936|  # 抢劫
++-------------------+-------+
+```
+
+#### Monthly Summary(Spark SQL)
+
+抓一下按月分类的, 看看数据是否有特征, 如果有特征就可以尝试后续做图.
+
+`focusCrime.scala` - 3
+
+```scala
+  val groupByMonth = spark
+    .sql("select month(Month) NaturalMonth, count(1) CrimePerMonth " +
+      "from t_CrimeDate " +
+      "group by NaturalMonth")
+  groupByMonth.orderBy(desc("CrimePerMonth")).show(12)
+```
+
+```scala
++------------+-------------+
+|NaturalMonth|CrimePerMonth|
++------------+-------------+
+|           7|       675041|
+|           8|       668824|
+|           5|       644421|
+|           6|       641529|
+|           9|       625696|
+|          10|       620504|
+|           3|       594688|
+|           4|       593116|
+|           1|       568404|
+|          11|       553769|
+|          12|       525734|
+|           2|       500547|
++------------+-------------+
+```
+
+这里就有很明显的趋势了, 年中部分的犯罪数量明显比年尾年头高.
+
+## Prepare External Data
+
+> 天气数据见[Weather Data Extraction](https://mijazzchan.github.io/posts/Weather-Data-Extraction/)
+
+上次抓天气数据, 把2001年到今年, 每年的数据都抓下来了, 数据格式是`Date, High, Low`
+
+```shell
+ mijazz@lenovo  ~/pyProjects/.../weatherDataCsv   master ±✚  ls
+2001.csv  2003.csv  2005.csv  2007.csv  2009.csv  2011.csv  2013.csv  2015.csv  2017.csv  2019.csv  
+2002.csv  2004.csv  2006.csv  2008.csv  2010.csv  2012.csv  2014.csv  2016.csv  2018.csv  2020.csv
+ mijazz@lenovo  ~/pyProjects/.../weatherDataCsv   master ±✚  echo "Date,High,Low" > ./temperature.full.csv
+ mijazz@lenovo  ~/pyProjects/.../weatherDataCsv   master ±✚  cat ./*.csv >> ./temperature.full.csv
+ ✘ mijazz@lenovo  ~/pyProjects/.../weatherDataCsv   master ±✚  head -n 3 ./temperature.full.csv 
+Date,High,Low
+2001-01-01,24,5
+2001-01-02,19,5
+ mijazz@lenovo  ~/pyProjects/.../weatherDataCsv   master ±✚  tail -n 3 ./temperature.full.csv 
+2020-11-21,48,36
+2020-11-22,47,41
+2020-11-23,46,33
+```
+
+现在可以将其放到`hdfs`里, 然后尝试在`spark`里交叉补充好气温信息. 为可视化做准备.
+
+```shell
+ mijazz@lenovo  ~/pyProjects/.../weatherDataCsv   master ±✚  hdfs dfs -put ./temperature.full.csv /user/mijazz/chicagoData/temperature.full.csv
+ mijazz@lenovo  ~/pyProjects/.../weatherDataCsv   master ±✚  hdfs dfs -ls /user/mijazz/chicagoData
+Found 3 items
+drwxr-xr-x   - mijazz supergroup          0 2020-11-30 21:16 /user/mijazz/chicagoData/dateDF.csv
+-rw-r--r--   1 mijazz supergroup 1701238602 2020-11-30 15:43 /user/mijazz/chicagoData/originCrimeData.csv
+-rw-r--r--   1 mijazz supergroup     123272 2020-11-30 23:37 /user/mijazz/chicagoData/temperature.full.csv
+```
+
