@@ -369,7 +369,7 @@ PMDK:    false The native code was built without PMDK support.
 
 ## 验证
 
-![Hadoop Index Page](https://MijazzChan.github.io/assets/img/blog/Screenshot_20201127_171715.png)
+![Hadoop Index Page](/assets/img/blog/20201127/Screenshot_20201127_171715.png)
 
 + http://your.host.or.ip:9870
 
