@@ -8,13 +8,124 @@ tags: [data, spark, python]
 
 # Spark Data Practicing-EP6
 
-## Merge to Python
+## Introduce `pyspark`
 
-EP5中拿出了两批数据, 分别是`forPyspark.csv`和`temperature.full.csv`
+`Scala`和`Python`下对于`Spark`的操作还是有很多相似的地方的.
 
 迁移到`PySpark`下, 因为`toPandas`和`collect() => List`这两个`pyspark`独有的特性, 使得可视化较`Scala`下方便.
 
-不过要注意的是`Spark.DataFrame`和`Pandas.DataFrame`是两个完全不同的东西.
+不过要注意的是`Spark.DataFrame`和`Pandas.DataFrame`是两个完全不同的东西. 不过也很好理解, 鉴于这一次实验我是故意避开不使用Pandas的东西的.
+
+假设有如下案例吧
+
+```python
+import random
+def rInt():
+    return random.randint(1, 100)
+def rStr():
+    return random.choice('I Just Dont Want To Use DataFrame From Pandas'.split(' '))
+def rRow():
+    return [rInt(), rStr()]
+
+print(rRow())
+```
+
+```python
+[66, 'Pandas']
+[35, 'Just']
+```
+
+每次调用`rRow()`都会返回一个List, ~~也就是sparkDataFrame中的一行数据.~~
+
+通过`Scala`中可以知道, `SparkSession`控制每次的`Spark`会话, 而他也提供一个方法来创建会话.
+
+`parallelize()`用于`RDD`, `toDF()`会把`RDD`数据转成`Spark.DataFrame`
+
+```python
+from pyspark.sql import SparkSession
+
+spark = SparkSession.builder\
+    .master('local').appName('Learn Pyspark').getOrCreate()
+
+sc = spark.sparkContext
+exampleSparkDataFrame = \
+    sc.parallelize([rRow() for _ in range(5)]).toDF(("Number", "Word"))
+exampleSparkDataFrame.show()
+print(type(exampleSparkDataFrame))
+```
+
+```python
++------+---------+
+|Number|     Word|
++------+---------+
+|    60|DataFrame|
+|    43|     Just|
+|    85|     Want|
+|    64|      Use|
+|    52|DataFrame|
++------+---------+
+
+<class 'pyspark.sql.dataframe.DataFrame'>
+```
+
+也可以很方便的通过`toPandas()`方式转换.
+
+```python
+examplePandasDataFrame = exampleSparkDataFrame.toPandas()
+examplePandasDataFrame.info()
+print(type(examplePandasDataFrame))
+```
+
+```python
+RangeIndex: 5 entries, 0 to 4
+Data columns (total 2 columns):
+ #   Column  Non-Null Count  Dtype 
+---  ------  --------------  ----- 
+ 0   Number  5 non-null      int64 
+ 1   Word    5 non-null      object
+dtypes: int64(1), object(1)
+memory usage: 208.0+ bytes
+<class 'pandas.core.frame.DataFrame'>
+```
+
+当想取列时, `select()`选择列, `collect()`将其从远端的`Spark.DataFrame`拉回本地Python.
+
+```python
+print(exampleSparkDataFrame.select('Number').collect())
+print(exampleSparkDataFrame.select('Word').collect())
+```
+
+```python
+[Row(Number=6), Row(Number=16), Row(Number=50), Row(Number=53), Row(Number=51)]
+[Row(Word='Just'), Row(Word='To'), Row(Word='From'), Row(Word='Just'), Row(Word='Pandas')]
+```
+
+假如你需要拿`spark.DataFrame`中的列来画图, 如下几种方法都是一样的.
+
+```python
+eg = [0 for _ in range(4)]
+eg[0] = list(exampleSparkDataFrame.toPandas()['Number'])
+eg[1] = exampleSparkDataFrame.select('Number').rdd.flatMap(lambda x: x).collect()
+eg[2] = exampleSparkDataFrame.select('Number').rdd.map(lambda x: x[0]).collect()
+eg[3] = [x[0] for x in exampleSparkDataFrame.select('Number').collect()]
+for example in eg:
+    print(example)
+```
+
+```python
+[95, 56, 54, 61, 58]
+[95, 56, 54, 61, 58]
+[95, 56, 54, 61, 58]
+[95, 56, 54, 61, 58]
+```
+
+但是不推荐`eg[0]`对应的方法, 他是将整个`spark.DataFrame`从远端取回来, ~~如果使用的是集群, 或者数据量比较大的话~~, 交给本地的python将其转为`Pandas.DataFrame`. 而其余几种, 而是交给spark处理过后, 单独剥离一列值进行返回.
+
+rdd内实现的操作这里不详述.
+
+## Start to Use PySpark
+
+EP5中拿出了两批数据, 分别是`forPyspark.csv`和`temperature.full.csv`
 
 先做以下导入
 
@@ -154,6 +265,6 @@ axs[1].set_ylabel('Temperature Celsius')
 plt.show()
 ```
 
-![plot2](/assets/img/20201201/plot2.png)
+![plot2](/assets/img/blog/20201201/plot2.png)
 
 现在是能看出一些趋势了.
