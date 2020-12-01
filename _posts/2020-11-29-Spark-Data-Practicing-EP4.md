@@ -1,14 +1,14 @@
 ---
-title: Hadoop+Spark Data Practicing-EP4
+title: Spark Data Practicing-EP4
 author: MijazzChan
 date: 2020-11-29 22:48:19 +0800
-categories: [Data, Hadoop]
-tags: [data, hadoop, spark, java]
+categories: [Data, Spark]
+tags: [data, spark, scala]
 
 
 ---
 
-# Hadoop+Spark Data Practicing-EP4
+# Spark Data Practicing-EP4
 
 ## Find Data
 
@@ -372,26 +372,28 @@ root
     .withColumn("Month", col("TimeStamp").substr(0, 7))
     .withColumn("Day", col("TimeStamp").substr(0, 10))
     .withColumn("Hour", col("TimeStamp").substr(11, 3))
+    .withColumnRenamed("Location Description", "Location")
 
   dateNeedColumn.show(5)
   dateNeedColumn.printSchema()
 ```
 
 ```scala
-+-------------------+----+-------------------+-------+----------+----+
-|              Crime|Year|          TimeStamp|  Month|       Day|Hour|
-+-------------------+----+-------------------+-------+----------+----+
-| DECEPTIVE PRACTICE|2001|2001-01-01 11:00:00|2001-01|2001-01-01|  11|
-|CRIM SEXUAL ASSAULT|2017|2017-10-08 03:00:00|2017-10|2017-10-08|  03|
-|           BURGLARY|2017|2017-03-28 02:00:00|2017-03|2017-03-28|  02|
-|              THEFT|2017|2017-09-09 08:17:00|2017-09|2017-09-09|  08|
-|CRIM SEXUAL ASSAULT|2017|2017-08-26 10:00:00|2017-08|2017-08-26|  10|
-+-------------------+----+-------------------+-------+----------+----+
++-------------------+----+-----------+-------------------+-------+----------+----+
+|              Crime|Year|   Location|          TimeStamp|  Month|       Day|Hour|
++-------------------+----+-----------+-------------------+-------+----------+----+
+| DECEPTIVE PRACTICE|2001|  RESIDENCE|2001-01-01 11:00:00|2001-01|2001-01-01|  11|
+|CRIM SEXUAL ASSAULT|2017|  RESIDENCE|2017-10-08 03:00:00|2017-10|2017-10-08|  03|
+|           BURGLARY|2017|      OTHER|2017-03-28 02:00:00|2017-03|2017-03-28|  02|
+|              THEFT|2017|  RESIDENCE|2017-09-09 08:17:00|2017-09|2017-09-09|  08|
+|CRIM SEXUAL ASSAULT|2017|HOTEL/MOTEL|2017-08-26 10:00:00|2017-08|2017-08-26|  10|
++-------------------+----+-----------+-------------------+-------+----------+----+
 only showing top 5 rows
 
 root
  |-- Crime: string (nullable = true)
  |-- Year: integer (nullable = true)
+ |-- Location: string (nullable = true)
  |-- TimeStamp: timestamp (nullable = true)
  |-- Month: string (nullable = true)
  |-- Day: string (nullable = true)

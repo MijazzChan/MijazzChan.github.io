@@ -1,16 +1,16 @@
 ---
-title: Hadoop+Spark Data Practicing-EP0
+title: Spark Data Practicing-EP0
 author: MijazzChan
 date: 2020-11-25 17:04:39 +0800
 categories: [Data, Hadoop]
 tags: [data, hadoop, spark, java]
 ---
 
-# Hadoop+Spark Data Practicing-EP0
+# Spark Data Practicing-EP0
 
 ## Before You Read This
 
-该文只是一门课程`数据挖掘`的大作业记录文, 并不是教程式文章. 但我会尽量详细的给出参考文与具体步骤.
+该文只是一门课程`数据挖掘`的大作业记录文, 并不是教程式文章. 我会尽量详细的给出参考文与具体步骤.
 
 ## Why This Topic?
 
