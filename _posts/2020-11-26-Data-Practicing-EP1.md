@@ -1,5 +1,5 @@
 ---
-title: Spark Data Practicing-EP1
+title: Data Practicing-EP1
 author: MijazzChan
 date: 2020-11-26 01:49:39 +0800
 categories: [Data, Hadoop]
@@ -7,7 +7,7 @@ tags: [data, hadoop, spark, java]
 
 ---
 
-# Spark Data Practicing-EP1
+# Data Practicing-EP1
 
 ## Testing Hadoop
 

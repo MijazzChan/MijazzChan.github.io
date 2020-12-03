@@ -1,5 +1,5 @@
 ---
-title: Spark Data Practicing-EP4
+title: Data Practicing-EP4
 author: MijazzChan
 date: 2020-11-29 22:48:19 +0800
 categories: [Data, Spark]
@@ -8,7 +8,7 @@ tags: [data, spark, scala]
 
 ---
 
-# Spark Data Practicing-EP4
+# Data Practicing-EP4
 
 ## Find Data
 
