@@ -1,12 +1,12 @@
 ---
-title: Spark Data Practicing-EP6
+title: Data Practicing-EP6
 author: MijazzChan
 date: 2020-12-1 18:07:28 +0800
 categories: [Data, Hadoop]
 tags: [data, spark, python]
 ---
 
-# Spark Data Practicing-EP6
+# Data Practicing-EP6
 
 ## Introduce `pyspark`
 
@@ -163,7 +163,7 @@ weatherData = weatherData\
     .drop('High')\
     .drop('Low')
 
-weatherData.createOrReplaceGlobalTempView('t_Weather')
+weatherData.createOrReplaceGlobalTempView('v_Weather')
 weatherData.describe().show()
 ```
 
@@ -215,7 +215,7 @@ plt.show()
 ```python
 annualData = \
     spark.sql('SELECT year(Date) Annual, round(avg(HighC), 2) avgHigh, round(avg(LowC), 2) avgLow ' 
-          'FROM global_temp.t_Weather '
+          'FROM global_temp.v_Weather '
           'GROUP BY year(Date) ')\
     .orderBy(asc('Annual'))
 annualData.show(20)
@@ -268,3 +268,153 @@ plt.show()
 ![plot2](/assets/img/blog/20201201/plot2.png)
 
 现在是能看出一些趋势了.
+
+
+
+## Plot Some Data
+
+### Some Acknowledgement
+
+该函数用于快速返回指定`spark.DataFrame`的列.
+
+```python
+def column2List(dataFrame, column):
+    return dataFrame.select(column).rdd.flatMap(lambda x: x).collect()
+```
+
+而且拿dataFrame中的数据, 有各种方法, 此处就以犯罪数据排名作为例子.
+
+```scala
+root
+ |-- Crime: string (nullable = true)
+ |-- Year: integer (nullable = true)
+ |-- TimeStamp: timestamp (nullable = true)
+ |-- Month: string (nullable = true)
+ |-- Day: timestamp (nullable = true)
+ |-- Location: string (nullable = true)
+ |-- HighC: double (nullable = true)
+ |-- LowC: double (nullable = true)
+```
+
+想摘取数据进行分析
+
+#### DataFrame Approach
+
+```python
+crimeRankPlotData = fullData.select('Crime')\
+                            .groupBy('Crime')\
+                            .count()\
+                            .orderBy(desc('count'))\
+                            .limit(15)
+```
+
+#### Spark SQL Approach
+
+```python
+fullData.createGlobalTempView('v_Crime')
+crimeRankPlotData = spark.sql('SELECT Crime, count(1) crimeCount '
+          'FROM global_temp.v_Crime '
+          'GROUP BY Crime '
+          'ORDER BY crimeCount DESC '
+          'LIMIT 15')
+```
+
+#### RDD Appraoch
+
+```python
+fullData.rdd.countByKey().items()  # -> dict
+```
+
+### Crime Rank Plot
+
+记得在EP4中, 拿出来看过犯罪数据的排名. 做个前15的BarPlot
+
+```python
+fullData = spark.read\
+    .option('header', True)\
+    .option('inferSchema', True)\
+    .csv(DATA_PATH + 'forPySpark.csv').cache()
+
+crimeRankPlotData = fullData.select('Crime')\
+                            .groupBy('Crime')\
+                            .count()\
+                            .orderBy(desc('count'))\
+                            .limit(15)
+plt.figure()
+plt.barh(column2List(crimeRankPlotData, 'Crime'), column2List(crimeRankPlotData, 'count'))
+plt.xlabel('Crime Count')
+plt.ylabel('Crime Type')
+plt.title('TOP 15 Crime Count')
+plt.show()
+```
+
+![CrimeRank](/assets/img/blog/20201201/plot3.png)
+
+### Location Distribution Plot
+
+```python
+locationRankPlotData = fullData.select('Location')\
+    .groupBy('Location')\
+    .count()\
+    .orderBy(desc('count'))
+locationRankPlotData.show(20)
+plt.figure()
+tmp1 = column2List(locationRankPlotData, 'Location')
+tmp2 = column2List(locationRankPlotData, 'count')
+plt.barh(tmp1[:15], tmp2[:15])
+plt.xlabel('Crime Count')
+plt.ylabel('Crime Type')
+plt.title('Location Distribution of Crimes')
+plt.show()
+```
+
+![LocationDistribution](/assets/img/blog/20201201/plot4.png)
+
+
+
+### Annual Crime Count Plot
+
+```python
+crimePerYear = spark.sql('SELECT year(C.TimeStamp) Annual, count(1) CrimePerYear '
+                         'FROM global_temp.v_Crime C '
+                         'GROUP BY year(C.TimeStamp) '
+                         'ORDER BY Annual ASC')
+crimePerYear.show(20)
+plt.figure()
+# 2020年的数据不齐, 去掉
+plt.plot(column2List(crimePerYear, 'Annual')[:19], column2List(crimePerYear, 'CrimePerYear')[:19])
+plt.title('Crime Count Per Year in Chicago City')
+plt.xlabel('Year')
+plt.ylabel('Crime Count')
+plt.show()
+```
+
+```scala
++------+------------+
+|Annual|CrimePerYear|
++------+------------+
+|  2001|      485783|
+|  2002|      486764|
+|  2003|      475962|
+|  2004|      469395|
+|  2005|      453735|
+|  2006|      448138|
+|  2007|      437041|
+|  2008|      427099|
+|  2009|      392770|
+|  2010|      370395|
+|  2011|      351878|
+|  2012|      336137|
+|  2013|      307299|
+|  2014|      275545|
+|  2015|      264449|
+|  2016|      269443|
+|  2017|      268675|
+|  2018|      268222|
+|  2019|      260318|
+|  2020|      163225|
++------+------------+
+```
+
+![plot5](/assets/img/blog/20201201/plot5.png)
+

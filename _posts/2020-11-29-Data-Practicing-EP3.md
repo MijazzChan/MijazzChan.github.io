@@ -1,5 +1,5 @@
 ---
-title: Spark Data Practicing-EP3
+title: Data Practicing-EP3
 author: MijazzChan
 date: 2020-11-29 20:10:31 +0800
 categories: [Data, Spark]
@@ -7,7 +7,7 @@ tags: [data, spark, java]
 
 ---
 
-# Spark Data Practicing-EP3
+# Data Practicing-EP3
 
 ## Introduce Spark
 

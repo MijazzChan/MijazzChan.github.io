@@ -1,12 +1,12 @@
 ---
-title: Spark Data Practicing-EP2
+title: Data Practicing-EP2
 author: MijazzChan
 date: 2020-11-27 17:55:17 +0800
 categories: [Data, Spark]
 tags: [data, spark, java]
 ---
 
-# Spark Data Practicing-EP2
+# Data Practicing-EP2
 
 ## Testing Spark
 

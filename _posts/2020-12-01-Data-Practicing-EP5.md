@@ -1,12 +1,12 @@
 ---
-title: Spark Data Practicing-EP5
+title: Data Practicing-EP5
 author: MijazzChan
 date: 2020-12-1 14:16:02 +0800
 categories: [Data, Spark]
 tags: [data, spark, scala]
 ---
 
-# Spark Data Practicing-EP5
+# Data Practicing-EP5
 
 ## Get Weather Data
 
