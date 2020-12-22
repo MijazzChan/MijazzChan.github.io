@@ -2,7 +2,7 @@
 title: About Me
 ---
 
-> For CV PDF Download:[CN](/assets/file/cv.pdf)
+> For CV PDF Download: [CN](/assets/file/cv.pdf)
 
 ## 个人信息
 
@@ -21,7 +21,7 @@ title: About Me
 
   主修课程: 数学分析, 高等代数, 数值分析, 离散数学, 软件工程, 计算机组成原理, 计算机网络, 算法与程序设计, 面向对象程序设计, 数据挖掘, 数据分析, 数据库系统原理...
 
-  **期间**: CET4, CET6-584; 学习优秀奖学金, 外语优秀奖学金; 浙江省计算机二级-C语言  
+  **期间**: CET4, CET6; 学习优秀奖学金, 外语优秀奖学金; 浙江省计算机二级-C语言  
 
 ## 技能自述
 
@@ -35,7 +35,7 @@ title: About Me
 
 + 熟悉Linux系统及其常用命令.
 
-+ 熟悉常用服务器软件与容器的配置和部署, 有简单的云上CI/CD部署经验.
++ 熟悉常用服务器软件与容器的配置和部署, 服务上云部署经验.
 
 + 能够根据需求编写并优化SQL语句.
 
@@ -43,9 +43,8 @@ title: About Me
 
 + 有Python数据处理/数据清洗/数据可视化/自动化脚本经验.
 
-+ 了解Scala/Spark,RDD&SQL/Hadoop YARN.
++ 数据处理方面有Spark/SparkSQL/RDD, Scala相关经验.
 
-+ Office套件
 
 ## 项目经历
 
@@ -69,3 +68,15 @@ title: About Me
 + 热爱阅读源码理解设计理念和钻研问题, 且有较强的英文文档阅读能力.
 + 热爱学习新技术并加以实践, 如高并发, 集群化部署等.
 + 业余爱好NAS, OpenWrt, All-in-one LinuxServer.
+
+## Fun Stuff Currently Under My Development
+
+A data visualization project combining Spring Boot, Java, Scala, Spark, MySQL, HighCharts together, focusing on modular design. 
+
+Combine multiple condition query then pass to spark to exec.
+
+The whole idea of this project, is not on how massive the data is; is on how spring boot can work with scala to handle spark data and cast to frontend.
+
+And the data will be fetched schedulely and handled via spark in order to keep the visualization chart updated. 
+
+Estimated Time of Development: 7 days.
