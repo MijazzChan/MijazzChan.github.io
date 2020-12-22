@@ -2,8 +2,6 @@
 title: About Me
 ---
 
-> For CV PDF Download: [CN](/assets/file/cv.pdf)
-
 ## 个人信息
 
 + 基础信息: 陈浩骏/男/1999/杭州
