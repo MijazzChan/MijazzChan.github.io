@@ -39,9 +39,9 @@ title: About Me
 
 + 熟悉Maven, Git等项目构建工具与版本管理软件的使用.
 
-+ 有Python数据处理/数据清洗/数据可视化/自动化脚本经验.
++ 有Python数据处理/数据清洗/数据可视化/运维自动化脚本经验.
 
-+ 数据处理方面有Spark/SparkSQL/RDD, Scala相关经验.
++ 数据处理方面有Spark(Scala/PySpark), Zeppelin, Hadoop相关使用经验.
 
 
 ## 项目经历
@@ -54,7 +54,7 @@ title: About Me
 
   - 后端架构设计, 消息收发/广播逻辑.
 
-  - 开发阶段采用集成的Tomcat向外暴露同时提供静态资源和API访问, 上线时分离前后端采用Nginx+ReverseProxy模式.
+  - 开发阶段采用集成的Tomcat向外暴露同时提供静态资源和API访问, 上线时分离前后端采用Nginx+Reverse Proxy模式.
   - 面向注解开发, 针对消息实体类的记录和回写.
   - 阿里云部署
 
@@ -65,16 +65,14 @@ title: About Me
 + 能够适应高强度工作与加班.
 + 热爱阅读源码理解设计理念和钻研问题, 且有较强的英文文档阅读能力.
 + 热爱学习新技术并加以实践, 如高并发, 集群化部署等.
-+ 业余爱好NAS, OpenWrt, All-in-one LinuxServer.
++ 业余爱好: NAS, OpenWrt, All-in-one LinuxServer.
++ Arch Linux User.
 
-## Fun Stuff Currently Under My Development
+## Side Project
 
-A data visualization project combining Spring Boot, Java, Scala, Spark, MySQL, HighCharts together, focusing on modular design. 
+### Covid-19 Visualization Dashboard
 
-Combine multiple condition query then pass to spark to exec.
+> [Link to Page](https://www.wearamask.ml) 
+>
+> [Link to Project](https://github.com/MijazzChan/covid-19-visualization)
 
-The whole idea of this project, is not on how massive the data is; is on how spring boot can work with scala to handle spark data and cast to frontend.
-
-And the data will be fetched schedulely and handled via spark in order to keep the visualization chart updated. 
-
-Estimated Time of Development: 7 days.
