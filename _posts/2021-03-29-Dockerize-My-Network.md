@@ -1,7 +1,7 @@
 ---
 title: Dockerize My Network
 author: MijazzChan
-date: 2020-03-29 16:51:49 +0800
+date: 2021-03-29 16:51:49 +0800
 categories: [NotForBlog, Personal_Notes]
 tags: [notes, Dockerfile, docker, networking]
 ---
