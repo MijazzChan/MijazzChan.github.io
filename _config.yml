@@ -15,7 +15,7 @@ tagline: 'Watermelon & Java?'  # it will display as the sub-title
 description: 'Blog of MijazzChan, powered by Jekyll & Chirpy'                         # used by seo meta and the atom feed
 
 # Replace with the website url, e.g. 'https://username.github.io'
-url: 'https://MijazzChan.github.io'
+url: 'https://mijazz.icu'
 
 author: MijazzChan                  # change to your full name
 
@@ -35,7 +35,7 @@ social:
     # - https://www.facebook.com/username
     # - https://www.linkedin.com/in/usernamekkjlkjlkk
 
-google_site_verification: YOGhRowf6Tokpdgjo9NnWYFkmE0IOGEAYTwPnmD3nyM 
+google_site_verification: '' 
 
 #--------------------------
 
