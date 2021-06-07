@@ -5,11 +5,11 @@ title: About Me
 ## 个人信息
 
 + 基础信息: 陈浩骏/男/1999/杭州
-+ 年龄: 21
++ 年龄: 22
 + 学历: 本科/浙江理工大学
 + Github: [MijazzChan](https://github.com/MijazzChan)
-+ HomePage: [Github Pages](https://mijazzchan.github.io)
-+ 期望职位及方向: Java后端/Data方向
++ Blog: [MijazzChan’s Blog](https://mijazz.icu/)
++ 方向: Java后端/Data方向
 + 联系方式: [chenhj@88.com](mailto:chenhj@88.com)
 
 ## 教育经历
@@ -23,28 +23,19 @@ title: About Me
 
 ## 技能自述
 
-+ Java基础扎实, 熟悉基础类, 并发类等知识框架, 拥有面向对象编程的思维模式, 且有阅读源码的习惯.
-
++ Java基础扎实, 熟悉基础类等知识, 拥有面向对象编程的思维模式, 且有阅读源码的习惯.
 + 对JVM有初步的理解, 包括但不限于内存模型, 垃圾回收机制.
-
-+ 有Spring Boot开发经验, 了解并实践JPA, RESTful, DAO等框架与设计模式
-
++ 熟悉Spring Boot下契合Hibernate/MyBatis等经典框架与场景下的开发模式
 + 了解并实践Redis等NoSQL数据库在Web服务中的应用场景.
-
 + 熟悉Linux系统及其常用命令.
-
 + 熟悉常用服务器软件与容器的配置和部署, 服务上云部署经验.
-
-+ 能够根据需求编写并优化SQL语句.
-
 + 熟悉Maven, Git等项目构建工具与版本管理软件的使用.
-
++ 熟悉Docker的使用.
 + 有Python数据处理/数据清洗/数据可视化/运维自动化脚本经验.
-
 + 数据处理方面有Spark(Scala/PySpark), Zeppelin, Hadoop相关使用经验.
 
 
-## 项目经历
+## ~~项目经历(`Deprecated`)~~
 
 + 基于Spring Boot与WebSocket协议的即时通讯(IM)平台 [view on github](https://github.com/MijazzChan/spring-websocket-chat)
 
@@ -62,7 +53,6 @@ title: About Me
 
 ## 自我评价
 
-+ 能够适应高强度工作与加班.
 + 热爱阅读源码理解设计理念和钻研问题, 且有较强的英文文档阅读能力.
 + 热爱学习新技术并加以实践, 如高并发, 集群化部署等.
 + 业余爱好: NAS, OpenWrt, All-in-one LinuxServer.
@@ -76,3 +66,11 @@ title: About Me
 >
 > [Link to Project](https://github.com/MijazzChan/covid-19-visualization)
 
+Project uses Github Workflow to guarantee continuous integration. Data will be fetched from upstream and automatically built and updated.
+
+Related keyword: Python, Pandas, Github workflows, JS, CSS, Highcharts, Data visualization... 
+
+## Books or Fields that I am now interested in
+
++ Effective Java - Third Edition by Joshua Bloch
++ Java Reflection Usage in Frameworks
