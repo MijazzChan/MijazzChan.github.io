@@ -22,6 +22,8 @@ _backup_dir="$(mktemp -d)"
 
 _baseurl=""
 
+_run_date=$(date +"%Y-%m-%d %H:%M:%S %a")
+
 help() {
   echo "Build, test and then deploy the site content to 'origin/<pages_branch>'"
   echo
@@ -107,7 +109,7 @@ deploy() {
 
   git update-ref -d HEAD
   git add -A
-  git commit -m "[Automation] Site update No.${GITHUB_RUN_NUMBER}"
+  git commit -m "[Automation] $_run_date No.${GITHUB_RUN_NUMBER}"
 
   if $_no_pages_branch; then
     git push -u origin "$PAGES_BRANCH"
