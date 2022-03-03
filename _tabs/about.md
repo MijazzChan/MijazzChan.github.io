@@ -47,9 +47,7 @@ order: 4
 
 ### Cloudflare DDNS for EdgeOS
 
-![GitHub Repo stars](https://img.shields.io/github/stars/MijazzChan/cloudflare-ddns-edgeos?color=blue&label=stars&logo=github&style=flat-square)
-![made-with-bash](https://img.shields.io/badge/Made%20with-Bash-1f425f.svg?style=flat-square)
-![GitHub last commit](https://img.shields.io/github/last-commit/MijazzChan/cloudflare-ddns-edgeos?style=flat-square)
+<p><a href="https://github.com/MijazzChan/cloudflare-ddns-edgeos" title="" class="img-link" style="display: inline-block !important;"><img data-src="https://img.shields.io/github/stars/MijazzChan/cloudflare-ddns-edgeos?color=blue&label=stars&logo=github&style=flat-square" alt="GitHub Repo stars" src="https://img.shields.io/github/stars/MijazzChan/cloudflare-ddns-edgeos?color=blue&label=stars&logo=github&style=flat-square"></a> <a href="javascript:void(0)" title="" class="img-link" style="display: inline-block !important;"><img data-src="https://img.shields.io/badge/Made%20with-Bash-1f425f.svg?style=flat-square" alt="made-with-bash" src="https://img.shields.io/badge/Made%20with-Bash-1f425f.svg?style=flat-square"></a> <a href="https://github.com/MijazzChan/cloudflare-ddns-edgeos" title="" class="img-link" style="display: inline-block !important;"><img data-src="https://img.shields.io/github/last-commit/MijazzChan/cloudflare-ddns-edgeos?style=flat-square" alt="GitHub last commit" src="https://img.shields.io/github/last-commit/MijazzChan/cloudflare-ddns-edgeos?style=flat-square"></a></p>
 
 > [Link to Project](https://github.com/MijazzChan/cloudflare-ddns-edgeos)
 >
@@ -61,9 +59,7 @@ Related keyword: Linux, Shell-script, Bash, DDNS, Cloudflare...
 
 ### Covid-19 Visualization Dashboard - US
 
-![GitHub Repo stars](https://img.shields.io/github/stars/MijazzChan/covid-19-visualization?color=blue&label=stars&logo=github&style=flat-square)
-![made-with-bash](https://img.shields.io/badge/Made%20with-Python-1f425f.svg?style=flat-square)
-![GitHub last commit](https://img.shields.io/github/last-commit/MijazzChan/covid-19-visualization?style=flat-square)
+<p><a href="https://github.com/MijazzChan/covid-19-visualization" title="" class="img-link" style="display: inline-block !important;"><img data-src="https://img.shields.io/github/stars/MijazzChan/covid-19-visualization?color=blue&label=stars&logo=github&style=flat-square" alt="GitHub Repo stars" src="https://img.shields.io/github/stars/MijazzChan/covid-19-visualization?color=blue&label=stars&logo=github&style=flat-square"></a> <a href="javascript:void(0)" title="" class="img-link" style="display: inline-block !important;"><img data-src="https://img.shields.io/badge/Made%20with-Python-1f425f.svg?style=flat-square" alt="made-with-python" src="https://img.shields.io/badge/Made%20with-Python-1f425f.svg?style=flat-square"></a> <a href="https://github.com/MijazzChan/covid-19-visualization" title="" class="img-link" style="display: inline-block !important;"><img data-src="https://img.shields.io/github/last-commit/MijazzChan/covid-19-visualization?style=flat-square" alt="GitHub last commit" src="https://img.shields.io/github/last-commit/MijazzChan/covid-19-visualization?style=flat-square"></a></p>
 
 > [Link to Page](https://wear-a-mask.mijazz.icu/) 
 >
